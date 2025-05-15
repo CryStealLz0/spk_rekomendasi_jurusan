@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Rekomendasi Jurusan UNPAM</title>
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <div class="container">
+            <h1>Kuisioner Rekomendasi Jurusan</h1>
+            <form id="formKuisioner">
+                <div class="question">
+                    <p>1. Saya menyukai berhitung dan logika</p>
+                    <div class="options" data-key="logika">
+                        <label
+                            ><input
+                                type="radio"
+                                name="logika"
+                                value="1"
+                                required
+                            />
+                            1</label
+                        >
+                        <label
+                            ><input type="radio" name="logika" value="2" />
+                            2</label
+                        >
+                        <label
+                            ><input type="radio" name="logika" value="3" />
+                            3</label
+                        >
+                        <label
+                            ><input type="radio" name="logika" value="4" />
+                            4</label
+                        >
+                        <label
+                            ><input type="radio" name="logika" value="5" />
+                            5</label
+                        >
+                    </div>
+                </div>
+
+                <div class="question">
+                    <p>2. Saya tertarik dengan komputer dan teknologi</p>
+                    <div class="options" data-key="teknologi">
+                        <label
+                            ><input
+                                type="radio"
+                                name="teknologi"
+                                value="1"
+                                required
+                            />
+                            1</label
+                        >
+                        <label
+                            ><input type="radio" name="teknologi" value="2" />
+                            2</label
+                        >
+                        <label
+                            ><input type="radio" name="teknologi" value="3" />
+                            3</label
+                        >
+                        <label
+                            ><input type="radio" name="teknologi" value="4" />
+                            4</label
+                        >
+                        <label
+                            ><input type="radio" name="teknologi" value="5" />
+                            5</label
+                        >
+                    </div>
+                </div>
+
+                <div class="question">
+                    <p>3. Saya suka mengatur dan memimpin</p>
+                    <div class="options" data-key="manajemen">
+                        <label
+                            ><input
+                                type="radio"
+                                name="manajemen"
+                                value="1"
+                                required
+                            />
+                            1</label
+                        >
+                        <label
+                            ><input type="radio" name="manajemen" value="2" />
+                            2</label
+                        >
+                        <label
+                            ><input type="radio" name="manajemen" value="3" />
+                            3</label
+                        >
+                        <label
+                            ><input type="radio" name="manajemen" value="4" />
+                            4</label
+                        >
+                        <label
+                            ><input type="radio" name="manajemen" value="5" />
+                            5</label
+                        >
+                    </div>
+                </div>
+
+                <div class="question">
+                    <p>4. Saya suka berdiskusi dan memahami orang lain</p>
+                    <div class="options" data-key="sosial">
+                        <label
+                            ><input
+                                type="radio"
+                                name="sosial"
+                                value="1"
+                                required
+                            />
+                            1</label
+                        >
+                        <label
+                            ><input type="radio" name="sosial" value="2" />
+                            2</label
+                        >
+                        <label
+                            ><input type="radio" name="sosial" value="3" />
+                            3</label
+                        >
+                        <label
+                            ><input type="radio" name="sosial" value="4" />
+                            4</label
+                        >
+                        <label
+                            ><input type="radio" name="sosial" value="5" />
+                            5</label
+                        >
+                    </div>
+                </div>
+
+                <div class="question">
+                    <p>5. Saya tertarik dengan mesin dan eksperimen teknis</p>
+                    <div class="options" data-key="mesin">
+                        <label
+                            ><input
+                                type="radio"
+                                name="mesin"
+                                value="1"
+                                required
+                            />
+                            1</label
+                        >
+                        <label
+                            ><input type="radio" name="mesin" value="2" />
+                            2</label
+                        >
+                        <label
+                            ><input type="radio" name="mesin" value="3" />
+                            3</label
+                        >
+                        <label
+                            ><input type="radio" name="mesin" value="4" />
+                            4</label
+                        >
+                        <label
+                            ><input type="radio" name="mesin" value="5" />
+                            5</label
+                        >
+                    </div>
+                </div>
+
+                <button type="submit">Lihat Rekomendasi</button>
+            </form>
+
+            <div id="hasil"></div>
+        </div>
+        <script src="script.js"></script>
+    </body>
+</html>
