@@ -1,116 +1,86 @@
-document
-    .getElementById('formKuisioner')
-    .addEventListener('submit', function (e) {
-        e.preventDefault();
+import { questions } from './questions.js';
 
-        const keys = ['logika', 'teknologi', 'manajemen', 'sosial', 'mesin'];
-        const nilai = {};
-        keys.forEach((key) => {
-            const val = document.querySelector(`input[name="${key}"]:checked`);
-            nilai[key] = parseInt(val.value);
-        });
+let current = 0;
+const answers = {};
 
-        const bobot = {
-            logika: 0.25,
-            teknologi: 0.25,
-            manajemen: 0.15,
-            sosial: 0.2,
-            mesin: 0.15,
+const soalNav = document.getElementById('soalNav');
+const soalTeks = document.getElementById('soalTeks');
+const soalJudul = document.getElementById('soalJudul');
+const formSoal = document.getElementById('formSoal');
+const nextBtn = document.getElementById('nextBtn');
+const prevBtn = document.getElementById('prevBtn');
+
+function renderSidebar() {
+    soalNav.innerHTML = '';
+    questions.forEach((_, i) => {
+        const btn = document.createElement('button');
+        btn.textContent = i + 1;
+        if (answers[questions[i].key]) btn.classList.add('answered');
+        if (i === current) btn.classList.add('active');
+        btn.onclick = () => {
+            saveAnswer();
+            current = i;
+            renderQuestion();
         };
-
-        const jurusan = {
-            'Sistem Informasi': {
-                logika: 4,
-                teknologi: 5,
-                manajemen: 3,
-                sosial: 3,
-                mesin: 2,
-            },
-            'Teknik Informatika': {
-                logika: 5,
-                teknologi: 5,
-                manajemen: 3,
-                sosial: 2,
-                mesin: 2,
-            },
-            Manajemen: {
-                logika: 3,
-                teknologi: 2,
-                manajemen: 5,
-                sosial: 4,
-                mesin: 1,
-            },
-            Akuntansi: {
-                logika: 5,
-                teknologi: 2,
-                manajemen: 4,
-                sosial: 2,
-                mesin: 1,
-            },
-            Hukum: {
-                logika: 3,
-                teknologi: 2,
-                manajemen: 4,
-                sosial: 5,
-                mesin: 1,
-            },
-            'Ilmu Komunikasi': {
-                logika: 3,
-                teknologi: 3,
-                manajemen: 4,
-                sosial: 5,
-                mesin: 2,
-            },
-            'Teknik Industri': {
-                logika: 4,
-                teknologi: 3,
-                manajemen: 3,
-                sosial: 2,
-                mesin: 4,
-            },
-            'Teknik Mesin': {
-                logika: 4,
-                teknologi: 3,
-                manajemen: 2,
-                sosial: 2,
-                mesin: 5,
-            },
-            'Sastra Inggris': {
-                logika: 2,
-                teknologi: 1,
-                manajemen: 3,
-                sosial: 4,
-                mesin: 1,
-            },
-            PPKn: {
-                logika: 3,
-                teknologi: 2,
-                manajemen: 4,
-                sosial: 5,
-                mesin: 1,
-            },
-        };
-
-        const hasilAkhir = [];
-
-        for (const [nama, profil] of Object.entries(jurusan)) {
-            let skor = 0;
-            for (const k in nilai) {
-                let normal = Math.min(1, nilai[k] / profil[k]);
-                skor += normal * bobot[k];
-            }
-            hasilAkhir.push({ nama, skor });
-        }
-
-        hasilAkhir.sort((a, b) => b.skor - a.skor);
-
-        let output = `<h2>Rekomendasi Jurusan:</h2><ol>`;
-        hasilAkhir.slice(0, 3).forEach((j) => {
-            output += `<li><strong>${j.nama}</strong> (Skor: ${j.skor.toFixed(
-                2,
-            )})</li>`;
-        });
-        output += `</ol>`;
-
-        document.getElementById('hasil').innerHTML = output;
+        soalNav.appendChild(btn);
     });
+}
+
+function renderQuestion() {
+    const q = questions[current];
+    soalJudul.textContent = `Pertanyaan ${current + 1}`;
+    soalTeks.textContent = q.text;
+
+    formSoal.innerHTML = [1, 2, 3, 4, 5]
+        .map(
+            (val) => `
+      <label>
+        <input type="radio" name="jawaban" value="${val}" ${
+                answers[q.key] == val ? 'checked' : ''
+            }>
+        ${val}
+      </label><br/>
+    `,
+        )
+        .join('');
+
+    renderSidebar();
+    updateButtons();
+}
+
+function saveAnswer() {
+    const selected = document.querySelector('input[name="jawaban"]:checked');
+    if (selected) {
+        answers[questions[current].key] = parseInt(selected.value);
+    }
+}
+
+function updateButtons() {
+    prevBtn.disabled = current === 0;
+    nextBtn.textContent =
+        current === questions.length - 1 ? 'Lihat Hasil' : 'Next →';
+}
+
+prevBtn.onclick = () => {
+    saveAnswer();
+    if (current > 0) current--;
+    renderQuestion();
+};
+
+nextBtn.onclick = () => {
+    saveAnswer();
+
+    if (current === questions.length - 1) {
+        if (Object.keys(answers).length !== questions.length) {
+            alert('Harap isi semua pertanyaan terlebih dahulu.');
+            return;
+        }
+        localStorage.setItem('kuisionerSAW', JSON.stringify(answers));
+        window.location.href = 'hasil.html';
+    } else {
+        current++;
+        renderQuestion();
+    }
+};
+
+renderQuestion();

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="id">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Kuisioner Rekomendasi Jurusan</title>
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <div class="layout">
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <h2>Kuisioner</h2>
+                <div class="navigasi-soal" id="soalNav"></div>
+            </aside>
+
+            <!-- Main -->
+            <main class="content">
+                <div class="soal-box">
+                    <h3 id="soalJudul"></h3>
+                    <p id="soalTeks"></p>
+                    <form id="formSoal"></form>
+                    <div class="navigation-buttons">
+                        <div class="navigation-next-prev">
+                            <button id="prevBtn">← Prev</button>
+                            <button id="nextBtn">Next →</button>
+                        </div>
+                        <div>
+                            <a href="index.html">
+                                <button>Kembali ke Halaman Utama</button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <script type="module" src="script.js"></script>
+    </body>
+</html>

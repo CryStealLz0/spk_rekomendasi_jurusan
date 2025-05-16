@@ -1,175 +1,88 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Rekomendasi Jurusan UNPAM</title>
         <link rel="stylesheet" href="style.css" />
+        <style>
+            body {
+                margin: 0;
+                font-family: 'Segoe UI', sans-serif;
+                background: linear-gradient(to right, #1976d2, #42a5f5);
+                color: white;
+            }
+
+            .hero {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+                height: 100vh;
+                text-align: center;
+                padding: 0 20px;
+            }
+
+            h1 {
+                font-size: 48px;
+                margin-bottom: 20px;
+            }
+
+            p {
+                font-size: 20px;
+                max-width: 600px;
+            }
+
+            .start-button {
+                margin-top: 40px;
+                padding: 14px 32px;
+                font-size: 18px;
+                background-color: white;
+                color: #1976d2;
+                border: none;
+                border-radius: 8px;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                text-decoration: none;
+                font-weight: bold;
+            }
+
+            .start-button:hover {
+                background-color: #e3f2fd;
+            }
+
+            .logo {
+                margin-bottom: 24px;
+            }
+
+            .logo img {
+                width: 100px;
+            }
+
+            @media (max-width: 600px) {
+                h1 {
+                    font-size: 32px;
+                }
+                p {
+                    font-size: 16px;
+                }
+            }
+        </style>
     </head>
     <body>
-        <div class="container">
-            <h1>Kuisioner Rekomendasi Jurusan</h1>
-            <form id="formKuisioner">
-                <div class="question">
-                    <p>1. Saya menyukai berhitung dan logika</p>
-                    <div class="options" data-key="logika">
-                        <label
-                            ><input
-                                type="radio"
-                                name="logika"
-                                value="1"
-                                required
-                            />
-                            1</label
-                        >
-                        <label
-                            ><input type="radio" name="logika" value="2" />
-                            2</label
-                        >
-                        <label
-                            ><input type="radio" name="logika" value="3" />
-                            3</label
-                        >
-                        <label
-                            ><input type="radio" name="logika" value="4" />
-                            4</label
-                        >
-                        <label
-                            ><input type="radio" name="logika" value="5" />
-                            5</label
-                        >
-                    </div>
-                </div>
-
-                <div class="question">
-                    <p>2. Saya tertarik dengan komputer dan teknologi</p>
-                    <div class="options" data-key="teknologi">
-                        <label
-                            ><input
-                                type="radio"
-                                name="teknologi"
-                                value="1"
-                                required
-                            />
-                            1</label
-                        >
-                        <label
-                            ><input type="radio" name="teknologi" value="2" />
-                            2</label
-                        >
-                        <label
-                            ><input type="radio" name="teknologi" value="3" />
-                            3</label
-                        >
-                        <label
-                            ><input type="radio" name="teknologi" value="4" />
-                            4</label
-                        >
-                        <label
-                            ><input type="radio" name="teknologi" value="5" />
-                            5</label
-                        >
-                    </div>
-                </div>
-
-                <div class="question">
-                    <p>3. Saya suka mengatur dan memimpin</p>
-                    <div class="options" data-key="manajemen">
-                        <label
-                            ><input
-                                type="radio"
-                                name="manajemen"
-                                value="1"
-                                required
-                            />
-                            1</label
-                        >
-                        <label
-                            ><input type="radio" name="manajemen" value="2" />
-                            2</label
-                        >
-                        <label
-                            ><input type="radio" name="manajemen" value="3" />
-                            3</label
-                        >
-                        <label
-                            ><input type="radio" name="manajemen" value="4" />
-                            4</label
-                        >
-                        <label
-                            ><input type="radio" name="manajemen" value="5" />
-                            5</label
-                        >
-                    </div>
-                </div>
-
-                <div class="question">
-                    <p>4. Saya suka berdiskusi dan memahami orang lain</p>
-                    <div class="options" data-key="sosial">
-                        <label
-                            ><input
-                                type="radio"
-                                name="sosial"
-                                value="1"
-                                required
-                            />
-                            1</label
-                        >
-                        <label
-                            ><input type="radio" name="sosial" value="2" />
-                            2</label
-                        >
-                        <label
-                            ><input type="radio" name="sosial" value="3" />
-                            3</label
-                        >
-                        <label
-                            ><input type="radio" name="sosial" value="4" />
-                            4</label
-                        >
-                        <label
-                            ><input type="radio" name="sosial" value="5" />
-                            5</label
-                        >
-                    </div>
-                </div>
-
-                <div class="question">
-                    <p>5. Saya tertarik dengan mesin dan eksperimen teknis</p>
-                    <div class="options" data-key="mesin">
-                        <label
-                            ><input
-                                type="radio"
-                                name="mesin"
-                                value="1"
-                                required
-                            />
-                            1</label
-                        >
-                        <label
-                            ><input type="radio" name="mesin" value="2" />
-                            2</label
-                        >
-                        <label
-                            ><input type="radio" name="mesin" value="3" />
-                            3</label
-                        >
-                        <label
-                            ><input type="radio" name="mesin" value="4" />
-                            4</label
-                        >
-                        <label
-                            ><input type="radio" name="mesin" value="5" />
-                            5</label
-                        >
-                    </div>
-                </div>
-
-                <button type="submit">Lihat Rekomendasi</button>
-            </form>
-
-            <div id="hasil"></div>
+        <div class="hero">
+            <div class="logo">
+                <img
+                    src="https://upload.wikimedia.org/wikipedia/id/thumb/7/79/Logo_UNPAM.png/320px-Logo_UNPAM.png"
+                    alt="Logo Aplikasi kita"
+                />
+            </div>
+            <h1>Rekomendasi Jurusan Kuliah</h1>
+            <p>
+                Temukan jurusan kuliah terbaik untukmu di Universitas Pamulang
+                berdasarkan minat dan kemampuanmu.
+            </p>
+            <a href="kuisioner.html" class="start-button">Mulai Kuisioner</a>
         </div>
-        <script src="script.js"></script>
     </body>
 </html>

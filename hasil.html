@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="id">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Hasil Rekomendasi Jurusan</title>
+        <link rel="stylesheet" href="style.css" />
+        <style>
+            body {
+                font-family: sans-serif;
+                padding: 40px;
+                background-color: #f9f9f9;
+            }
+            .hasil {
+                max-width: 600px;
+                margin: auto;
+                background: white;
+                padding: 24px;
+                border-radius: 8px;
+                box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+            }
+            h2 {
+                margin-top: 0;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="hasil" id="hasilBox">
+            <h2>Hasil Rekomendasi Jurusan</h2>
+            <p>
+                Silakan lihat jurusan yang direkomendasikan berdasarkan jawaban
+                Anda:
+            </p>
+            <ul id="hasilList"></ul>
+            <div class="navigation-buttons" style="justify-content: center">
+                <button>
+                    <a href="index.html">Kembali ke halaman utama</a>
+                </button>
+            </div>
+        </div>
+
+        <script type="module" src="data-hasil-kuisioner.js"></script>
+    </body>
+</html>
