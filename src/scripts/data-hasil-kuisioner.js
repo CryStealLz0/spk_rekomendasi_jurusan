@@ -1,5 +1,5 @@
-import { bobot } from './bobot.js';
-import { jurusan } from './jurusan.js';
+import { bobot } from './src/scripts/data/bobot.js';
+import { jurusan } from './src/scripts/data/jurusan.js';
 
 // Ambil jawaban pengguna dari localStorage
 const jawaban = JSON.parse(localStorage.getItem('kuisionerSAW'));

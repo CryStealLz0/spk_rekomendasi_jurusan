@@ -1,4 +1,4 @@
-import { questions } from './questions.js';
+import { questions } from '../../questions.js';
 
 let current = 0;
 const answers = {};
