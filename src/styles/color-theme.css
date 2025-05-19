@@ -1,0 +1,21 @@
+:root {
+    --color-darkest-blue: #0d1433;
+    --color-deep-blue: #171f55;
+    --color-steel-blue: #274272;
+    --color-sky-blue: #6c90c3;
+
+    /* Optional: additional derived colors */
+    --color-text-light: #ffffff;
+    --color-text-dark: #0d1433;
+    --color-background: var(--color-darkest-blue);
+}
+
+:root {
+    --color-dark: #222831;
+    --color-deep: #283b48;
+    --color-accent: #00a6c0;
+    --color-light: #d8d7ce;
+
+    --color-text-light: #ffffff;
+    --color-text-dark: #222831;
+}

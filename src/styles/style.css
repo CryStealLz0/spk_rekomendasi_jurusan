@@ -2,73 +2,10 @@ body {
     margin: 0;
     font-family: sans-serif;
     background-color: #f2f2f2;
+    font-family: 'Poppins', sans-serif;
 }
 
 a {
     text-decoration: none;
     color: white;
-}
-
-.layout {
-    display: flex;
-    min-height: 100vh;
-}
-
-.sidebar {
-    width: 240px;
-    background: white;
-    padding: 20px;
-    border-right: 1px solid #ddd;
-}
-
-.navigasi-soal button {
-    width: 36px;
-    height: 36px;
-    margin: 4px;
-    border: none;
-    border-radius: 4px;
-    background-color: lightgray;
-    cursor: pointer;
-}
-
-.navigasi-soal button.active {
-    background-color: #1976d2;
-    color: white;
-}
-
-.navigasi-soal button.answered {
-    background-color: #4caf50;
-    color: white;
-}
-
-.content {
-    flex-grow: 1;
-    padding: 40px;
-}
-
-.soal-box {
-    background: white;
-    padding: 24px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.navigation-buttons {
-    margin-top: 20px;
-    display: flex;
-    justify-content: space-between;
-}
-
-.navigation-next-prev {
-    display: flex;
-    gap: 50px;
-}
-
-.navigation-buttons button {
-    padding: 10px 24px;
-    background-color: #1976d2;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
 }

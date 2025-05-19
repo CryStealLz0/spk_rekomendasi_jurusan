@@ -31,7 +31,13 @@ function renderQuestion() {
     soalJudul.textContent = `Pertanyaan ${current + 1}`;
     soalTeks.textContent = q.text;
 
-    formSoal.innerHTML = [1, 2, 3, 4, 5]
+    formSoal.innerHTML = [
+        'Suka Banget Banget Banget',
+        'Suka Banget Banget',
+        'Suka Banget',
+        'Suka',
+        'Biasa',
+    ]
         .map(
             (val) => `
       <label>
@@ -58,7 +64,7 @@ function saveAnswer() {
 function updateButtons() {
     prevBtn.disabled = current === 0;
     nextBtn.textContent =
-        current === questions.length - 1 ? 'Lihat Hasil' : 'Next →';
+        current === questions.length - 1 ? 'Lihat Hasil' : 'Next';
 }
 
 prevBtn.onclick = () => {
