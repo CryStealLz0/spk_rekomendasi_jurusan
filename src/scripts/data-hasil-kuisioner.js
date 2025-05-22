@@ -1,39 +1,37 @@
 import { bobot } from './data/bobot.js';
 import { jurusan } from './data/jurusan.js';
 
-// Ambil jawaban pengguna dari localStorage
 const jawaban = JSON.parse(localStorage.getItem('kuisionerSAW'));
-
-// Array untuk menyimpan hasil akhir (nama jurusan dan skor)
 const hasil = [];
 
-// Loop setiap jurusan untuk dihitung skornya
+// 1. Hitung nilai maksimum tiap kriteria
+const nilaiMax = {};
+for (const kriteria in bobot) {
+    nilaiMax[kriteria] = Math.max(
+        ...Object.values(jurusan).map((j) => j[kriteria]),
+    );
+}
+
+// 2. Hitung skor SAW
 for (const [namaJurusan, nilaiProfilJurusan] of Object.entries(jurusan)) {
     let totalSkor = 0;
 
-    // Loop setiap kriteria (logika, teknologi, dll.)
     for (const kriteria in bobot) {
-        const nilaiUser = jawaban[kriteria]; // Jawaban user untuk kriteria ini
-        const nilaiIdeal = nilaiProfilJurusan[kriteria]; // Nilai ideal dari jurusan
+        const nilaiUser = jawaban[kriteria] || 0;
+        const nilaiIdeal = nilaiMax[kriteria];
 
-        // Normalisasi: nilai user dibagi nilai ideal (dibatasi maksimum 1)
-        const nilaiNormalisasi = Math.min(1, nilaiUser / nilaiIdeal);
-
-        // Hitung skor kontribusi untuk kriteria ini
+        const nilaiNormalisasi = nilaiUser / nilaiIdeal;
         const skorKriteria = nilaiNormalisasi * bobot[kriteria];
 
-        // Tambahkan ke total skor jurusan
         totalSkor += skorKriteria;
     }
 
-    // Simpan hasil akhir ke dalam array hasil
     hasil.push({ nama: namaJurusan, skor: totalSkor });
 }
 
-// Urutkan hasil dari skor tertinggi ke terendah
+// 3. Urutkan dan tampilkan
 hasil.sort((a, b) => b.skor - a.skor);
 
-// Tampilkan 3 jurusan teratas
 const list = document.getElementById('hasilList');
 hasil.slice(0, 3).forEach((jurusan) => {
     list.innerHTML += `<li><strong>${

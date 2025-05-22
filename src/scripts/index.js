@@ -38,16 +38,17 @@ function renderQuestion() {
         'Suka',
         'Biasa',
     ]
-        .map(
-            (val) => `
-      <label>
-        <input type="radio" name="jawaban" value="${val}" ${
-                answers[q.key] == val ? 'checked' : ''
+        .map((val, idx, arr) => {
+            const score = arr.length - idx; // 5 to 1
+            return `
+            <label>
+                <input type="radio" name="jawaban" value="${score}" ${
+                answers[q.key] == score ? 'checked' : ''
             }>
-        ${val}
-      </label><br/>
-    `,
-        )
+                ${val}
+            </label><br/>
+        `;
+        })
         .join('');
 
     renderSidebar();
