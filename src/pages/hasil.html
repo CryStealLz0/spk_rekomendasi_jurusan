@@ -21,6 +21,19 @@
             h2 {
                 margin-top: 0;
             }
+            .navigation-buttons button {
+                margin-top: 20px;
+                padding: 10px 20px;
+                border: none;
+                background-color: #3498db;
+                color: white;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+            .navigation-buttons button a {
+                color: white;
+                text-decoration: none;
+            }
         </style>
     </head>
     <body>
@@ -33,11 +46,17 @@
             <ul id="hasilList"></ul>
             <div class="navigation-buttons" style="justify-content: center">
                 <button>
-                    <a href="../../index.html">Kembali ke halaman utama</a>
+                    <a
+                        href="../../index.html"
+                        target="_self"
+                        rel="noopener noreferrer"
+                        >Kembali ke Halaman Utama</a
+                    >
                 </button>
             </div>
         </div>
 
-        <script type="module" src="../scripts/data-hasil-kuisioner.js"></script>
+        <!-- Disesuaikan ke file modular baru -->
+        <script type="module" src="../scripts/hasil.js"></script>
     </body>
 </html>

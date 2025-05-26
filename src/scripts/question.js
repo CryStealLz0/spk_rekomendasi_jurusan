@@ -1,4 +1,4 @@
-import { questions } from './data/questions.js';
+import { kriteria } from './data/kriteria.js';
 
 let current = 0;
 const answers = {};
@@ -12,10 +12,10 @@ const prevBtn = document.getElementById('prevBtn');
 
 function renderSidebar() {
     soalNav.innerHTML = '';
-    questions.forEach((_, i) => {
+    kriteria.forEach((_, i) => {
         const btn = document.createElement('button');
         btn.textContent = i + 1;
-        if (answers[questions[i].key]) btn.classList.add('answered');
+        if (answers[kriteria[i].key]) btn.classList.add('answered');
         if (i === current) btn.classList.add('active');
         btn.onclick = () => {
             saveAnswer();
@@ -27,27 +27,29 @@ function renderSidebar() {
 }
 
 function renderQuestion() {
-    const q = questions[current];
+    const q = kriteria[current];
     soalJudul.textContent = `Pertanyaan ${current + 1}`;
     soalTeks.textContent = q.text;
 
-    formSoal.innerHTML = [
-        'Suka Banget Banget Banget',
-        'Suka Banget Banget',
-        'Suka Banget',
-        'Suka',
-        'Biasa',
-    ]
-        .map((val, idx, arr) => {
-            const score = arr.length - idx; // 5 to 1
+    const opsi = [
+        'Sangat Tidak Sesuai',
+        'Tidak Sesuai',
+        'Cukup Sesuai',
+        'Sesuai',
+        'Sangat Sesuai',
+    ];
+
+    formSoal.innerHTML = opsi
+        .map((val, idx) => {
+            const score = idx + 1;
             return `
-            <label>
-                <input type="radio" name="jawaban" value="${score}" ${
+        <label>
+          <input type="radio" name="jawaban" value="${score}" ${
                 answers[q.key] == score ? 'checked' : ''
             }>
-                ${val}
-            </label><br/>
-        `;
+          ${val}
+        </label><br/>
+      `;
         })
         .join('');
 
@@ -58,14 +60,14 @@ function renderQuestion() {
 function saveAnswer() {
     const selected = document.querySelector('input[name="jawaban"]:checked');
     if (selected) {
-        answers[questions[current].key] = parseInt(selected.value);
+        answers[kriteria[current].key] = parseInt(selected.value);
     }
 }
 
 function updateButtons() {
     prevBtn.disabled = current === 0;
     nextBtn.textContent =
-        current === questions.length - 1 ? 'Lihat Hasil' : 'Next';
+        current === kriteria.length - 1 ? 'Lihat Hasil' : 'Lanjut';
 }
 
 prevBtn.onclick = () => {
@@ -77,8 +79,8 @@ prevBtn.onclick = () => {
 nextBtn.onclick = () => {
     saveAnswer();
 
-    if (current === questions.length - 1) {
-        if (Object.keys(answers).length !== questions.length) {
+    if (current === kriteria.length - 1) {
+        if (Object.keys(answers).length !== kriteria.length) {
             alert('Harap isi semua pertanyaan terlebih dahulu.');
             return;
         }
@@ -89,5 +91,6 @@ nextBtn.onclick = () => {
         renderQuestion();
     }
 };
+localStorage.getItem('kuisionerSAW');
 
 renderQuestion();
