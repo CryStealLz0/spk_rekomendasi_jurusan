@@ -20,8 +20,9 @@ for (const [namaJurusan, nilaiProfilJurusan] of Object.entries(jurusan)) {
         const nilaiUser = jawaban[kriteria] || 0;
         const nilaiIdeal = nilaiMax[kriteria];
 
-        const nilaiNormalisasi = nilaiUser / nilaiIdeal;
-        const skorKriteria = nilaiNormalisasi * bobot[kriteria];
+        const nilaiNormalisasi =
+            nilaiProfilJurusan[kriteria] / nilaiMax[kriteria];
+        const skorKriteria = nilaiNormalisasi * (jawaban[kriteria] || 0);
 
         totalSkor += skorKriteria;
     }
