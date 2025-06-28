@@ -2,48 +2,51 @@ import { bobot } from './data/bobot.js';
 import { jurusan } from './data/jurusan.js';
 import { sambutan } from './data/sambutan.js';
 
+// Ambil jawaban user dari localStorage
 const jawaban = JSON.parse(localStorage.getItem('kuisionerSAW'));
 if (!jawaban) {
     alert('Data kuisioner tidak ditemukan.');
     window.location.href = 'kuisioner.html';
 }
 
+// Proses perhitungan SMART
 const hasil = [];
 
-// Langkah 1: Cari nilai maksimum tiap kriteria
-const nilaiMax = {};
-for (const kriteria in bobot) {
-    nilaiMax[kriteria] = Math.max(
-        ...Object.values(jurusan).map((j) => j[kriteria]),
-    );
-}
-
-// Langkah 2: Hitung skor SAW murni untuk tiap jurusan
 for (const [namaJurusan, nilaiProfil] of Object.entries(jurusan)) {
     let totalSkor = 0;
 
     for (const kriteria in bobot) {
-        const nilai = nilaiProfil[kriteria];
-        const normalisasi = nilai / nilaiMax[kriteria];
-        const skor = normalisasi * bobot[kriteria];
+        const nilaiUser = jawaban[kriteria]; // preferensi user (1–5)
+        const nilaiJurusan = nilaiProfil[kriteria]; // kekuatan jurusan pada kriteria itu (1–5)
+
+        const skor = (nilaiUser / 5) * (nilaiJurusan / 5) * bobot[kriteria];
         totalSkor += skor;
     }
 
     hasil.push({ nama: namaJurusan, skor: totalSkor });
 }
 
-// Langkah 3: Urutkan
+// Urutkan berdasarkan skor tertinggi
 hasil.sort((a, b) => b.skor - a.skor);
 
-// Langkah 4: Tampilkan ke UI
+// Ambil 3 jurusan teratas
+const jurusanTerbaik = hasil.slice(0, 3);
+
+// Tampilkan hasil ke halaman
 const list = document.getElementById('hasilList');
-hasil.slice(0, 3).forEach((jurusan) => {
+jurusanTerbaik.forEach((jurusan) => {
     list.innerHTML += `
         <li style="margin-bottom: 24px;">
-            <strong>${jurusan.nama}</strong> — Skor: ${jurusan.skor.toFixed(2)}
+            <strong>${jurusan.nama}</strong> — Skor: ${jurusan.skor.toFixed(3)}
             <p style="margin-top: 8px; font-size: 0.95em; color: #333;">
                 ${sambutan[jurusan.nama] ?? 'Deskripsi belum tersedia.'}
             </p>
         </li>
     `;
+});
+
+// Debug opsional: tampilkan skor semua jurusan di konsol
+console.log('Ranking Semua Jurusan:');
+hasil.forEach((j) => {
+    console.log(`${j.nama}: ${j.skor.toFixed(3)}`);
 });
