@@ -11,7 +11,7 @@ footer.style.lineHeight = '1.6';
 
 footer.innerHTML = `
   <p>&copy; ${new Date().getFullYear()} RekomendasiJurusan — Hak cipta dilindungi undang-undang.</p>
-  <p>Dibuat dengan 💙 menggunakan Metode SMART untuk Rekomendasi Jurusan</p>
+  <p>Dibuat dengan menggunakan Metode SMART untuk Rekomendasi Jurusan</p>
 `;
 
 document.body.appendChild(footer);
