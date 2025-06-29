@@ -1,11 +1,311 @@
-body {
+@import url('./color-theme.css');
+
+/* Reset & Base */
+* {
     margin: 0;
-    font-family: sans-serif;
-    background-color: #f2f2f2;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
     font-family: 'Poppins', sans-serif;
+    background: linear-gradient(
+        to bottom right,
+        #1c1f26 0%,
+        #1c1f26 50%,
+        #0596aa 100%
+    );
+    min-height: 100vh;
+    color: #1c1f26;
 }
 
 a {
     text-decoration: none;
+    color: inherit;
+}
+
+/* Humberger Menu */
+.hamburger {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+/* Responsive Styling */
+@media (max-width: 850px) {
+    .navbar {
+        position: relative;
+        flex-wrap: wrap;
+    }
+
+    .hamburger {
+        display: block;
+    }
+
+    .navbar_bar {
+        display: none;
+        flex-direction: column;
+        background-color: #fff;
+        position: absolute;
+        transform: translateX(120%);
+        top: 70px;
+        left: 0;
+        width: 100%;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        z-index: 0;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .navbar_bar.active {
+        transform: translateX(0%);
+        transition: all 0.3s ease-in-out;
+    }
+
+    .navbar_bar_list {
+        flex-direction: column;
+        gap: 16px;
+        align-items: center;
+        margin-bottom: 1rem;
+    }
+
+    .navbar_button {
+        display: flex;
+        justify-content: center;
+    }
+}
+
+/* Navbar Desktop */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    padding: 1rem 1rem;
+    border-bottom: 2px solid var(--color-deep);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar_logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo_img {
+    height: 48px;
+}
+
+.logo_heading {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-deep);
+    border-bottom: 2px solid #0596aa;
+}
+
+.navbar_bar {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+}
+
+.navbar_bar_list {
+    list-style: none;
+    display: flex;
+    gap: 24px;
+}
+
+.navbar_bar_list li a {
+    color: #1c1f26;
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+.navbar_button .navbar_link {
+    background-color: #0596aa;
     color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+/* Home Section */
+.home {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 70px);
+}
+
+.home_container {
+    background-color: #f9f9f9;
+    padding: 40px;
+    border-radius: 24px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    max-width: 600px;
+    width: 100%;
+}
+
+.home_logo {
+    height: 90px;
+    margin-bottom: 20px;
+}
+
+.home_heading {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.home_description {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+.home_button {
+    background-color: #0596aa;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+/* Hero (About) */
+.hero {
+    background: url('https://images.unsplash.com/photo-1531973576160-7125cd663d86?q=80')
+        center/cover no-repeat;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-content {
+    background: rgba(0, 0, 0, 0.65);
+    width: 100%;
+    text-align: center;
+    color: white;
+    padding: 120px 20px;
+}
+
+.hero h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.hero p {
+    font-size: 1.125rem;
+    margin-bottom: 32px;
+    line-height: 1.6;
+}
+
+.hero a {
+    background-color: white;
+    color: #1c1f26;
+    font-weight: 600;
+    padding: 10px 20px;
+    border-radius: 8px;
+}
+
+/* Info Sections */
+section.info,
+section.business {
+    text-align: center;
+    padding: 60px 20px;
+    max-width: 900px;
+    margin: auto;
+    color: white;
+    line-height: 1.8;
+}
+
+section h2 {
+    font-size: 1.75rem;
+    margin-bottom: 20px;
+}
+
+/* Contact */
+.contact {
+    background: url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d')
+        center/cover no-repeat;
+    position: relative;
+    height: 40vh;
+    color: white;
+}
+
+.contact-bg {
+    background: rgba(0, 0, 0, 0.7);
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.contact-bg h2 {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.contact-content {
+    padding: 60px 40px;
+    text-align: center;
+    color: white;
+}
+
+.contact-content h2 {
+    font-size: 1.75rem;
+    margin-bottom: 40px;
+}
+
+.contact-boxes {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.contact-box {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 220px;
+    height: 100%;
+    color: #333;
+}
+
+.contact-box h3 {
+    font-size: 1.125rem;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.contact-box p {
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+/* Utility */
+.link-button {
+    display: inline-block;
+    background-color: #0596aa;
+    color: #fff;
+    font-weight: 600;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.link-button:hover {
+    background-color: #037f91;
 }

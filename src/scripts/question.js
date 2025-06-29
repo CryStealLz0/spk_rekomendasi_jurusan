@@ -43,11 +43,12 @@ function renderQuestion() {
         .map((val, idx) => {
             const score = idx + 1;
             return `
-        <label>
+        <label class="radio-container">
           <input type="radio" name="jawaban" value="${score}" ${
                 answers[q.key] == score ? 'checked' : ''
             }>
           ${val}
+          <span class="checkmark"></span>
         </label><br/>
       `;
         })

@@ -20,8 +20,20 @@ export const jurusan = {
         sosial: 1,
         mesin: 5,
     },
-    Manajemen: { logika: 3, teknologi: 2, manajemen: 5, sosial: 4, mesin: 1 },
-    Akuntansi: { logika: 5, teknologi: 2, manajemen: 4, sosial: 2, mesin: 1 },
+    Manajemen: {
+        logika: 3,
+        teknologi: 2,
+        manajemen: 5,
+        sosial: 4,
+        mesin: 1,
+    },
+    Akuntansi: {
+        logika: 5,
+        teknologi: 2,
+        manajemen: 4,
+        sosial: 2,
+        mesin: 1,
+    },
     'Ekonomi Syariah': {
         logika: 4,
         teknologi: 2,
@@ -50,5 +62,11 @@ export const jurusan = {
         sosial: 4,
         mesin: 1,
     },
-    PPKn: { logika: 3, teknologi: 1, manajemen: 3, sosial: 5, mesin: 1 },
+    PPKn: {
+        logika: 3,
+        teknologi: 1,
+        manajemen: 3,
+        sosial: 5,
+        mesin: 1,
+    },
 };

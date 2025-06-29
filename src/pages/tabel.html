@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="id">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>SMART Scoring Table</title>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+            rel="stylesheet"
+        />
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+            }
+
+            main {
+                padding: 25px;
+            }
+
+            header {
+                border-bottom: 1rem solid #3498db;
+                text-align: center;
+                margin-bottom: 2rem;
+                padding-bottom: 2rem;
+            }
+
+            header h1 {
+                margin-bottom: 1rem;
+            }
+
+            header .desc-tabel {
+                max-width: 800px;
+                margin: 0 auto;
+                text-align: center;
+            }
+
+            main {
+                padding-bottom: 6rem;
+            }
+
+            section.result-table {
+                margin-bottom: 3rem;
+            }
+
+            table {
+                border-collapse: collapse;
+                width: 100%;
+                margin-top: 20px;
+            }
+
+            th,
+            td {
+                border: 1px solid #ddd;
+                padding: 8px;
+                text-align: center;
+            }
+
+            th {
+                background-color: #f4f4f4;
+            }
+
+            li {
+                margin-bottom: 0.5rem;
+            }
+
+            h2 {
+                margin-top: 4rem;
+                margin-bottom: 1rem;
+                text-align: center;
+            }
+
+            footer.navigation-buttons {
+                display: flex;
+                width: 100%;
+                justify-content: space-between;
+                flex-wrap: wrap;
+                overflow: hidden;
+                position: fixed;
+                bottom: 0;
+            }
+
+            .btn-home {
+                padding: 10px 20px;
+                margin: 1rem 2rem;
+                border: none;
+                background-color: #3498db;
+                border-radius: 4px;
+                cursor: pointer;
+                text-decoration: none;
+            }
+
+            .btn-home a {
+                display: block;
+                color: white;
+                text-decoration: none;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <h1>Hasil Perhitungan SMART</h1>
+            <div class="desc-tabel">
+                <p>
+                    Data pada halaman ini dihasilkan dari jawaban kuisioner yang
+                    Anda isi sebelumnya. Setiap pertanyaan kuisioner
+                    merepresentasikan preferensi atau minat Anda terhadap
+                    berbagai aspek — seperti logika, teknologi, manajemen,
+                    sosial, dan mesin.
+                </p>
+                <p>
+                    Anda memberikan penilaian dari skala
+                    <strong>1 hingga 5</strong>, di mana:
+                </p>
+                <ul style="text-align: left; display: inline-block">
+                    <li>
+                        <strong>5</strong> berarti <em>Sangat Sesuai</em> dengan
+                        minat atau kemampuan Anda
+                    </li>
+                    <li>
+                        <strong>1</strong> berarti <em>Sangat Tidak Sesuai</em>
+                    </li>
+                    <li>
+                        Nilai lainnya mencerminkan tingkat kesesuaian di
+                        antaranya
+                    </li>
+                </ul>
+                <p>
+                    Nilai-nilai ini kemudian diolah menggunakan metode
+                    <strong
+                        >SMART (Simple Multi Attribute Rating Technique)</strong
+                    >
+                    untuk menghitung skor akhir setiap jurusan. Hasilnya
+                    menunjukkan jurusan mana yang paling cocok dengan profil
+                    Anda secara objektif dan terukur.
+                </p>
+                <p>
+                    Metode SMART bekerja dengan cara memberikan bobot terhadap
+                    setiap kriteria (logika, teknologi, manajemen, sosial,
+                    mesin) dan menghitung seberapa tinggi nilai jurusan pada
+                    kriteria tersebut dibandingkan jurusan lainnya.
+                </p>
+                <p>Perhitungannya mengikuti langkah-langkah berikut:</p>
+                <ol style="text-align: left; display: inline-block">
+                    <li>
+                        <strong>Normalisasi nilai (Utility):</strong><br />
+                        Untuk setiap kriteria dan jurusan, dilakukan normalisasi
+                        dengan rumus:<br />
+                        <code>Utility = (Nilai - Min) / (Max - Min)</code><br />
+                        di mana <em>Nilai</em> adalah skor suatu jurusan pada
+                        kriteria tersebut, <em>Min</em> dan <em>Max</em> adalah
+                        nilai terendah dan tertinggi dari semua jurusan.
+                    </li>
+                    <li>
+                        <strong>Pengalian Bobot:</strong><br />
+                        Hasil utility dikalikan dengan bobot kriteria:<br />
+                        <code>Weighted = Utility × Bobot</code>
+                    </li>
+                    <li>
+                        <strong>Skor Akhir per Kriteria:</strong><br />
+                        Dikalikan lagi dengan nilai jawaban pengguna:<br />
+                        <code>Skor Kriteria = Weighted × Jawaban Anda</code>
+                    </li>
+                    <li>
+                        <strong>Skor Total Jurusan:</strong><br />
+                        Menjumlahkan semua skor dari seluruh kriteria:<br />
+                        <code>Total Skor = Σ (Skor Kriteria)</code>
+                    </li>
+                    <li>
+                        <strong>Pembulatan Akhir:</strong><br />
+                        Total skor dibulatkan ke kelipatan
+                        <code>0.05</code> terdekat. Jika hasilnya
+                        <code>x.15</code> atau <code>x.25</code>, maka skor akan
+                        tetap ditampilkan secara presisi (misalnya 3.25).
+                        Lainnya dibulatkan ke satu angka desimal, misalnya 3.14
+                        → 3.1 dan 3.16 → 3.2.
+                    </li>
+                </ol>
+            </div>
+        </header>
+
+        <main>
+            <section id="output" class="result-table"></section>
+        </main>
+
+        <footer class="navigation-buttons">
+            <button class="btn-home">
+                <a href="../../index.html">Kembali ke Halaman Utama</a>
+            </button>
+            <button class="btn-home">
+                <a href="./hasil.html">Kembali Lihat Hasil</a>
+            </button>
+        </footer>
+        <script type="module" src="../scripts/components/footer.js"></script>
+        <script type="module" src="../scripts/views/viewTabel.js"></script>
+    </body>
+</html>

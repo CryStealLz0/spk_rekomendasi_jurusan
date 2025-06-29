@@ -4,23 +4,46 @@
         <meta charset="UTF-8" />
         <title>Hasil Rekomendasi Jurusan</title>
         <link rel="stylesheet" href="../styles/style.css" />
+
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+            rel="stylesheet"
+        />
         <style>
-            body {
-                font-family: sans-serif;
-                padding: 40px;
-                background-color: #f9f9f9;
+            .container {
+                display: flex;
+                margin: auto;
+                min-height: 100vh;
             }
             .hasil {
                 max-width: 600px;
                 margin: auto;
                 background: white;
-                padding: 24px;
+                padding: 4rem;
                 border-radius: 8px;
                 box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
             }
-            h2 {
-                margin-top: 0;
+
+            .hasil-header {
+                margin-bottom: 1rem;
             }
+
+            .hasil-header h1 {
+                margin-bottom: 0.5rem;
+            }
+
+            #hasilList {
+                margin-left: 1rem;
+            }
+
+            .navigation-buttons {
+                display: flex;
+                justify-content: space-between;
+                flex-wrap: wrap;
+            }
+
             .navigation-buttons button {
                 margin-top: 20px;
                 padding: 10px 20px;
@@ -37,26 +60,70 @@
         </style>
     </head>
     <body>
-        <div class="hasil" id="hasilBox">
-            <h2>Hasil Rekomendasi Jurusan</h2>
-            <p>
-                Silakan lihat jurusan yang direkomendasikan berdasarkan jawaban
-                Anda:
-            </p>
-            <ul id="hasilList"></ul>
-            <div class="navigation-buttons" style="justify-content: center">
-                <button>
-                    <a
-                        href="../../index.html"
-                        target="_self"
-                        rel="noopener noreferrer"
-                        >Kembali ke Halaman Utama</a
-                    >
-                </button>
+        <header class="navbar">
+            <div class="navbar_logo">
+                <img
+                    src="../public/Logo.png"
+                    alt="Logo Rekomendasi Jurusan"
+                    class="logo_img"
+                />
+                <h1 class="logo_heading">REKOMENDASI JURUSAN</h1>
             </div>
-        </div>
+
+            <button
+                class="hamburger"
+                aria-label="Toggle menu"
+                aria-expanded="false"
+            >
+                ☰
+            </button>
+            <nav class="navbar_bar" aria-label="Navigasi utama">
+                <ul class="navbar_bar_list">
+                    <li><a href="../../index.html">Beranda</a></li>
+                    <li><a href="./about.html">Tentang</a></li>
+                    <li><a href="./contact.html">Kontak</a></li>
+                </ul>
+                <div class="navbar_button">
+                    <a href="./kuisioner.html" class="navbar_link link-button"
+                        >Mulai Kuesioner</a
+                    >
+                </div>
+            </nav>
+        </header>
+        <main class="container">
+            <div class="hasil" id="hasilBox">
+                <div class="hasil-header">
+                    <h2>Hasil Rekomendasi Jurusan</h2>
+                    <p>
+                        Silakan lihat jurusan yang direkomendasikan berdasarkan
+                        jawaban Anda:
+                    </p>
+                </div>
+                <ul id="hasilList"></ul>
+                <div class="navigation-buttons">
+                    <button>
+                        <a
+                            href="../../index.html"
+                            target="_self"
+                            rel="noopener noreferrer"
+                            >Kembali ke Halaman Utama</a
+                        >
+                    </button>
+                    <button>
+                        <a
+                            href="./tabel.html"
+                            target="_self"
+                            rel="noopener noreferrer"
+                            >Cek Hasil Perhitungan</a
+                        >
+                    </button>
+                </div>
+            </div>
+        </main>
 
         <!-- Disesuaikan ke file modular baru -->
         <script type="module" src="../scripts/hasil.js"></script>
+        <script type="module" src="../scripts/components/footer.js"></script>
+        <script type="module" src="../scripts/hb-menu.js"></script>
     </body>
 </html>

@@ -63,14 +63,21 @@ const jurusan = {
     PPKn: { logika: 3, teknologi: 1, manajemen: 3, sosial: 5, mesin: 1 },
 };
 
-// 1. Hitung min untuk setiap kriteria
+// Fungsi pembulatan 2 digit
+const round = (val, digits = 2) =>
+    Number(Math.round(val + 'e' + digits) + 'e-' + digits);
+
+// 1. Hitung min dan max untuk setiap kriteria
 const minPerKriteria = {};
+const maxPerKriteria = {};
+
 for (let kriteria in bobot) {
     const values = Object.values(jurusan).map((j) => j[kriteria]);
     minPerKriteria[kriteria] = Math.min(...values);
+    maxPerKriteria[kriteria] = Math.max(...values);
 }
 
-// 2. Hitung skor akhir sesuai rumus: finalScore = ((val - min)/min) * bobot * answer
+// 2. Hitung skor akhir
 const hasil = Object.entries(jurusan).map(([nama, nilai]) => {
     let total = 0;
     const detail = {};
@@ -78,32 +85,37 @@ const hasil = Object.entries(jurusan).map(([nama, nilai]) => {
     for (let kriteria in bobot) {
         const val = nilai[kriteria];
         const min = minPerKriteria[kriteria];
+        const max = maxPerKriteria[kriteria];
+        const range = max - min;
 
-        // Avoid division by zero
-        const utility = min === 0 ? 0 : (val - min) / min;
-        const weighted = utility * bobot[kriteria];
-        const final = weighted * answer[kriteria];
+        const utilityRaw = range === 0 ? 0 : (val - min) / range;
+        const utility = round(utilityRaw);
+        const weighted = round(utility * bobot[kriteria]);
+        const final = round(weighted * answer[kriteria]);
 
         total += final;
 
         detail[kriteria] = {
             nilai: val,
             min,
-            utility: utility.toFixed(2),
-            result: weighted.toFixed(4),
-            finalScore: final.toFixed(4),
+            max,
+            utility,
+            result: weighted,
+            finalScore: final,
         };
     }
 
     return {
         jurusan: nama,
-        skorAkhir: total.toFixed(4),
+        skorAkhir: round(total),
         detail,
     };
 });
 
 // 3. Tampilkan hasil akhir
-console.log('=== HASIL PERHITUNGAN SMART (CUSTOM RUMUS) ===');
+console.log(
+    '=== HASIL PERHITUNGAN SMART (NORMALISASI & PEMBULATAN 2 DIGIT) ===',
+);
 hasil.forEach(({ jurusan, skorAkhir }) => {
     console.log(`${jurusan.padEnd(20)} | Skor Akhir: ${skorAkhir}`);
 });
